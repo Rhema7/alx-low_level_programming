@@ -1,6 +1,5 @@
 #include "main.h"
 #include <stdlib.h>
-
 /**
  * alloc_grid - nested loop to make grid
  * @width: width input
@@ -28,7 +27,7 @@ int **alloc_grid(int width, int height)
 		if (mee[x] == NULL)
 		{
 			for (; x >= 0; x--)
-				free(mee[x];
+				free(mee[x]);
 
 					free(mee);
 
