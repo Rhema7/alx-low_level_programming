@@ -20,7 +20,7 @@ int is_digit(char *s)
 		i++;
 	}
 
-	return (1):
+	return (1);
 }
 
 /**
@@ -46,7 +46,7 @@ int _strlen(char *s)
 void errors(void)
 {
 	printf("Error\n");
-	exit (98);
+	exit(98);
 }
 
 /**
