@@ -249,7 +249,7 @@ void print_entry(unsigned long int e_entry, unsigned char *e_ident)
 /**
  * close_elf - close the ELF file
  * @elf - file that describes the ELF file
- * Note: Exit code 8 is triggered if the file cannot be closed
+ * Note: Exit code 98 is triggered if the file cannot be closed
  */
 void close_elf(int elf)
 {
@@ -257,7 +257,7 @@ void close_elf(int elf)
 	{
 		dprintf(STDERR_FILENO,
 				"Error: Can't close fd %d\n", elf);
-		exit(8);
+		exit(98);
 	}
 }
 
@@ -269,7 +269,7 @@ void close_elf(int elf)
  *
  * Return: 0 when positive
  *
- * Note: Exit code 8 - if the function fails or the file is not an ELF file
+ * Note: Exit code 98 - if the function fails or the file is not an ELF file
  */
 int main(int __attribute__((__unused__)) argc, char *argv[])
 {
@@ -282,7 +282,7 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read file %s\n",
 				argv[1]);
-		exit(8);
+		exit(98);
 	}
 	header = malloc(sizeof(Elf64_Ehdr));
 	if (header == NULL)
@@ -290,7 +290,7 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 		close_elf(o);
 		dprintf(STDERR_FILENO, "Error: Can't read file %s\n",
 				argv[1]);
-		exit(8);
+		exit(98);
 	}
 	r = read(o, header, sizeof(Elf64_Ehdr));
 	if (r == -1)
@@ -299,7 +299,7 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
 		close_elf(o);
 		dprintf(STDERR_FILENO, "Error: `%s`: No such file\n",
 			argv[1]);
-	exit(8);
+	exit(98);
 	}
 
 check_elf(header->e_ident);
@@ -312,7 +312,6 @@ print_osabi(header->e_ident);
 print_abi(header->e_ident);
 print_type(header->e_type, header->e_ident);
 print_entry(header->e_entry, header->e_ident);
-
 
 free(header);
 close_elf(o);
